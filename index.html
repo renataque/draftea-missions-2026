@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draftea-Pitaco 2026 — Product Missions</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #F4F3FF; padding: 2rem; }
+  .page { background: #fff; max-width: 960px; margin: 0 auto; padding: 2.5rem; border-radius: 16px; box-shadow: 0 4px 32px rgba(77,33,255,0.08); }
+
+  .header-slide { background: #4D21FF; border-radius: 12px; padding: 2.5rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; }
+  .header-left .eyebrow { font-size: 11px; letter-spacing: 2px; color: #C4B8FF; font-weight: 500; }
+  .header-left h1 { color: #fff; font-size: 38px; font-weight: 600; line-height: 1.1; margin-top: 0.5rem; }
+  .header-left h2 { color: #C4B8FF; font-size: 16px; font-weight: 400; margin-top: 0.5rem; }
+  .stat-box { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 10px; padding: 1.25rem 1.75rem; text-align: center; min-width: 150px; flex-shrink: 0; }
+  .stat-box .big { color: #fff; font-size: 42px; font-weight: 600; }
+  .stat-box .label { color: #C4B8FF; font-size: 11px; margin-top: 4px; }
+  .stat-box .sub2 { color: #C4B8FF; font-size: 11px; margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 10px; }
+
+  .section-title { font-size: 10px; font-weight: 600; letter-spacing: 2.5px; color: #4D21FF; margin: 1.75rem 0 0.85rem; text-transform: uppercase; }
+
+  .opportunity { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.5rem; }
+  .opp-card { background: #F8F7FF; border: 0.5px solid #C4B8FF; border-radius: 10px; padding: 1rem; border-top: 3px solid #4D21FF; }
+  .opp-card .ol { font-size: 10px; color: #7B5FFF; margin-bottom: 4px; font-weight: 500; }
+  .opp-card .ov { font-size: 26px; font-weight: 600; color: #4D21FF; }
+  .opp-card .os { font-size: 10px; color: #7B5FFF; margin-top: 6px; }
+
+  .mission-box { background: #F8F7FF; border: 0.5px solid #C4B8FF; border-radius: 10px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #4D21FF; }
+  .mission-box p { font-size: 15px; color: #26215C; font-weight: 500; line-height: 1.55; }
+  .mission-pillars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 1rem; }
+  .pillar { background: #fff; border: 0.5px solid #C4B8FF; border-radius: 8px; padding: 0.75rem 1rem; }
+  .pillar .pt { font-size: 12px; font-weight: 600; color: #4D21FF; margin-bottom: 4px; }
+  .pillar .pd { font-size: 11px; color: #534AB7; line-height: 1.4; }
+
+  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .team-card { background: #fff; border: 0.5px solid #C4B8FF; border-radius: 10px; overflow: hidden; }
+  .team-header { background: #4D21FF; padding: 0.9rem 1rem; }
+  .team-header .tag { font-size: 9px; letter-spacing: 2px; color: #C4B8FF; margin-bottom: 4px; font-weight: 500; }
+  .team-header .tname { font-size: 16px; font-weight: 600; color: #fff; }
+  .team-header .leads { font-size: 10px; color: #C4B8FF; margin-top: 3px; }
+  .team-body { display: grid; grid-template-columns: 1fr 1fr 1fr; }
+  .col { padding: 0.85rem; border-right: 0.5px solid #E8E4FF; }
+  .col:last-child { border-right: none; }
+  .col-label { font-size: 9px; font-weight: 600; letter-spacing: 1px; padding: 3px 7px; border-radius: 4px; margin-bottom: 8px; display: inline-block; text-transform: uppercase; }
+  .col-label.prob { background: #FEE2E2; color: #991B1B; }
+  .col-label.obj { background: #EDE9FE; color: #4D21FF; }
+  .col-label.how { background: #E0F2FE; color: #0C447C; }
+  .col ul { padding-left: 0; list-style: none; }
+  .col ul li { font-size: 10.5px; color: #3C3489; line-height: 1.5; margin-bottom: 5px; padding-left: 11px; position: relative; }
+  .col ul li::before { content: "·"; position: absolute; left: 2px; color: #7B5FFF; font-weight: 700; font-size: 14px; line-height: 1.2; }
+  .col ul li.bold { font-weight: 600; color: #26215C; }
+
+  .closing { background: #4D21FF; border-radius: 12px; padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; gap: 1.5rem; margin-top: 0.5rem; }
+  .closing-left h2 { color: #fff; font-size: 22px; font-weight: 600; line-height: 1.35; }
+  .closing-left p { color: #C4B8FF; font-size: 13px; margin-top: 0.75rem; line-height: 1.65; }
+  .closing-stats { display: flex; gap: 10px; flex-shrink: 0; }
+  .cstat { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; padding: 0.85rem 1.1rem; text-align: center; min-width: 110px; }
+  .cstat .cv { font-size: 28px; font-weight: 600; color: #fff; }
+  .cstat .cl { font-size: 10px; color: #C4B8FF; margin-top: 4px; }
+
+  @media (max-width: 700px) {
+    .opportunity { grid-template-columns: 1fr 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+    .team-body { grid-template-columns: 1fr; }
+    .col { border-right: none; border-bottom: 0.5px solid #E8E4FF; }
+    .col:last-child { border-bottom: none; }
+    .closing { flex-direction: column; }
+    .header-slide { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header-slide">
+    <div class="header-left">
+      <div class="eyebrow">DRAFTEA-PITACO 2026</div>
+      <h1>One product.<br>Two countries.</h1>
+      <h2>Team missions &amp; objectives</h2>
+    </div>
+    <div class="stat-box">
+      <div class="big">4x</div>
+      <div class="label">YoY growth target</div>
+      <div class="sub2">$130M NGR · MX + BR</div>
+    </div>
+  </div>
+
+  <div class="section-title">The opportunity</div>
+  <div class="opportunity">
+    <div class="opp-card"><div class="ol">MX Annual NGR</div><div class="ov">$62M</div><div class="os">OSB $40M · iGaming $22M</div></div>
+    <div class="opp-card"><div class="ol">BR Annual NGR</div><div class="ov">$68M</div><div class="os">OSB $27.7M · iGaming $40.5M</div></div>
+    <div class="opp-card"><div class="ol">H2 Global OSB</div><div class="ov">$33M</div><div class="os">MX $21M · BR $12M</div></div>
+    <div class="opp-card"><div class="ol">H2 Global iGaming</div><div class="ov">$42M</div><div class="os">MX $16.5M · BR $25.8M</div></div>
+  </div>
+
+  <div class="section-title">Global mission</div>
+  <div class="mission-box">
+    <p>"One Draftea — one premium product, zero friction, built to win in Mexico and dominate Brazil."</p>
+    <div class="mission-pillars">
+      <div class="pillar"><div class="pt">Win Mexico</div><div class="pd">Premium underdog. Become #1. Crush churn.</div></div>
+      <div class="pillar"><div class="pt">Crack Brazil</div><div class="pd">Replicate the MX playbook. Find fit fast. Scale hard.</div></div>
+      <div class="pillar"><div class="pt">One product</div><div class="pd">One app, two countries, no silos, no friction.</div></div>
+    </div>
+  </div>
+
+  <div class="section-title">Team missions</div>
+  <div class="team-grid">
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 01 · SPORTSBOOK</div>
+        <div class="tname">Offer Engine</div>
+        <div class="leads">PM: Joao &nbsp;·&nbsp; EM: Lu</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">Market/bet option gaps are the #2 churn driver — rising every month since January (7.2% → 9.0% Apr).</li>
+          <li>Users migrating to Stake seek NBA props and parlay flexibility we don't offer.</li>
+          <li>Single provider dependency = single point of failure. Every incident is direct revenue loss.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">Best multiprovider platform in LATAM: smart routing, auto-failover, catalog consistency.</li>
+          <li>Close the Stake gap on props and parlay coverage. Our uptime and coverage are our product.</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">Smart multiprovider routing: always best available odds, never dark.</li>
+          <li>Auto-reroute on provider failure — users never notice.</li>
+          <li>Competitive mapping vs Stake: identify and close market gaps (NBA props, parlay flex).</li>
+          <li>Catalog matching: consistent markets across providers, no gaps.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 02 · SPORTSBOOK</div>
+        <div class="tname">Bet Engine</div>
+        <div class="leads">PM: Marcos &nbsp;·&nbsp; EM: Mauri</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">Crear Apuesta selection limits are actively causing churn — mentioned independently for 2 consecutive months.</li>
+          <li>Low spenders: only 18.3% retention at D7. 94 users deposited, bet once, and disappeared.</li>
+          <li>Core checkout loop cannot be leaking — every error accelerates departure to PlayDoIt.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">Fastest, most reliable checkout in LATAM — push the limits of what users can build and cash out.</li>
+          <li>Settlement &lt;30ms MX. BR p95 from 8min to best-in-class. Expand Crear Apuesta to stop churn.</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">Settlement speed: 2s → 30ms MX, p95 BR from 8min down.</li>
+          <li>Crear Apuesta: remove selection limits — active churn driver for 2+ months.</li>
+          <li>Bet builder: push correlations so almost anything can be parlayed.</li>
+          <li>Cashout already winning (churn 2.0% → 0.6%) — maximize coverage to cement the lead.</li>
+          <li>Correlation % as core differentiator vs Stake and PlayDoIt.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 03 · SPORTSBOOK</div>
+        <div class="tname">Sportsbook Experience</div>
+        <div class="leads">PM: André &nbsp;·&nbsp; EM: Furlan</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">10.9% of NPAUs don't understand momios, parlay or how to bet — NPS 14.5 vs 53.7 for experienced users.</li>
+          <li>PlayDoIt is churn destination #1 (34.3%) AND growing origin — active bidirectional flow we must stop.</li>
+          <li>~50% W1 churn and $12M BR H2 target at risk without an experience that retains and converts.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">Undisputed #1 experience in MX — reduce churn, close the onboarding gap, scale the playbook to crack Brazil.</li>
+          <li>Make ease-of-use our moat: already in 29.1% of positive feedback (up from 22% in March).</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">Close the onboarding gap: users understand momios, parlay, cashout from day 1.</li>
+          <li>First-bet guidance and coach marks at the moment of use — not a tutorial, a flow.</li>
+          <li>Live + streaming as premium differentiator vs PlayDoIt and Caliente.</li>
+          <li>Personalization and special events that feel curated — not a generic catalog.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 04 · ENGAGEMENT</div>
+        <div class="tname">Growth &amp; Activation</div>
+        <div class="leads">PM: Mila &nbsp;·&nbsp; EM: Beck</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">Acquisition without activation is burning money.</li>
+          <li>Users who don't place a first bet rarely come back.</li>
+          <li>We are not yet their primary betting home.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">Every new user bets fast and comes back.</li>
+          <li>Build engagement loops that make Draftea their default.</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">Onboarding that drives time-to-first-bet down.</li>
+          <li>Missions, loyalty, MGM that reward staying.</li>
+          <li>CRM-to-product loops that bring users back.</li>
+          <li>Reactivation that fights churn proactively.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 05 · IGAMING</div>
+        <div class="tname">iGaming</div>
+        <div class="leads">PM: Iago &nbsp;·&nbsp; EM: Bento</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">Market flooded with generic catalogs. That's a shelf, not a product.</li>
+          <li>$42M H2 target — only won with curation, not volume.</li>
+          <li>Users expect the premium Draftea experience.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">V1: Most curated third-party + live casino in LATAM.</li>
+          <li>V2: Distinctive own games — an outlier no competitor can copy.</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">V1 now: curated catalog — every launch intentional.</li>
+          <li>V1 now: live casino as premium differentiator.</li>
+          <li>V2 next: original games no other LATAM book has.</li>
+          <li>Discovery + tournaments drive GGR per user.</li>
+        </ul></div>
+      </div>
+    </div>
+
+    <div class="team-card">
+      <div class="team-header">
+        <div class="tag">TEAM 06 · PLATFORM</div>
+        <div class="tname">Wallet &amp; Trust</div>
+        <div class="leads">PM: Gus &nbsp;·&nbsp; EM: Lean</div>
+      </div>
+      <div class="team-body">
+        <div class="col"><span class="col-label prob">Problem</span><ul>
+          <li class="bold">Payment failures are silent revenue killers.</li>
+          <li>Two countries, two rails — one ledger must scale.</li>
+          <li>Fraud must be stopped without blocking good users.</li>
+        </ul></div>
+        <div class="col"><span class="col-label obj">Objective</span><ul>
+          <li class="bold">Global ledger that moves money reliably — any country, any method.</li>
+          <li>Zero friction for good users. Zero tolerance for bad actors.</li>
+        </ul></div>
+        <div class="col"><span class="col-label how">How we win</span><ul>
+          <li class="bold">Payment success rate as close to 100% as possible.</li>
+          <li>Multi-currency, flexible KYC ready for new markets.</li>
+          <li>Fraud controls that protect margin, not block users.</li>
+          <li>Account recovery that builds trust, not blocks.</li>
+        </ul></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="closing">
+    <div class="closing-left">
+      <h2>Execute with the highest efficiency.<br>Every sprint counts.</h2>
+      <p>The opportunity is real. The window is now.<br>We have the product. We have the playbook. Now we execute.</p>
+    </div>
+    <div class="closing-stats">
+      <div class="cstat"><div class="cv">$130M</div><div class="cl">Total NGR target</div></div>
+      <div class="cstat"><div class="cv">4x</div><div class="cl">YoY growth</div></div>
+      <div class="cstat"><div class="cv">6</div><div class="cl">Teams. One mission.</div></div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
